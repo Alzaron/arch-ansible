@@ -50,3 +50,15 @@
     name:
       - visual-studio-code-bin
     skip_pgp_check:
+      
+
+- name: aur onlyoffice
+  become: yes
+  become_user: "{{ username }}"
+  ignore_errors: yes
+  aur:
+    use: yay
+    name:
+      - onlyoffice-bin
+    skip_pgp_check:
+
