@@ -1,0 +1,52 @@
+- name: aur spotify
+  become: yes
+  become_user: "{{ username }}"
+  ignore_errors: yes
+  aur:
+    use: yay
+    name:
+      - spotify
+
+    skip_pgp_check:
+
+- name: aur sublime and xmind
+  become: yes
+  become_user: "{{ username }}"
+  ignore_errors: yes
+  aur:
+    use: yay
+    name:
+      - sublime-text-4
+      - xmind
+    skip_pgp_check:
+
+- name: aur rcm
+  become: yes
+  become_user: "{{ username }}"
+  ignore_errors: yes
+  aur:
+    use: yay
+    name:
+      - rcm
+    skip_pgp_check:
+
+- name: aur tweetdeck
+  become: yes
+  become_user: "{{ username }}"
+  ignore_errors: yes
+  aur:
+    use: yay
+    name:
+      - atomic-tweetdeck
+    skip_pgp_check:
+
+
+- name: aur VS code
+  become: yes
+  become_user: "{{ username }}"
+  ignore_errors: yes
+  aur:
+    use: yay
+    name:
+      - visual-studio-code-bin
+    skip_pgp_check:

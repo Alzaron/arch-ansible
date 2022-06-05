@@ -1,0 +1,79 @@
+- name: install Terminal 
+  community.general.pacman:
+   name:
+    - kitty
+    - tmux
+      #   - mlocate
+   state: present
+- name: Install FileBrowser
+  community.general.pacman:
+   name:
+    - thunar
+    - thunar-volman
+    - gvfs-mtp
+   state: present
+
+- name: install git and downloaders
+  community.general.pacman:
+   name:
+    - git
+    - wget
+    - curl
+   state: present
+
+- name: install CLI and vim tools
+  community.general.pacman:
+   name:
+    - thefuck
+    - lsd
+    - vim
+    - source-highlight
+    - tree
+    - base-devel
+    - ripgrep
+    - bat
+   state: present
+
+- name: install Firewall
+  community.general.pacman:
+   name:
+    - ufw
+   state: present
+- name: Screenshot background, grafic and clipmenu
+  community.general.pacman:
+   name:
+    - flameshot
+    - gimp
+    - variety
+    - feh
+   state: present
+
+- name: bluetooth and audio
+  community.general.pacman:
+   name:
+    - bluez
+    - bluez-utils
+    - blueman
+    - pipewire
+    - pipewire-pulse
+   state: present
+  
+- name: install all the zip tools
+  community.general.pacman:
+   name:
+    - atool
+    - p7zip
+    - unrar
+    - unzip
+    - xz
+    - tar
+    - gzip
+    - bzip2
+    - zip
+   state: present
+
+- name: install font awsome
+  community.general.pacman:
+   name:
+    - ttf-font-awesome
+   state: present

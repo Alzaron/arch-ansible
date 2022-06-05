@@ -1,2 +1,50 @@
----
-# tasks file for arch
+- name: check updates
+  pacman: 
+   update_cache: yes
+   upgrade: yes
+
+
+# Configure pacman (colorize and repos)
+- include_tasks: pacman.yml
+
+# Basic apps
+- include_tasks: core-apps.yml
+
+# Install and configure zsh
+- include_tasks: zsh.yml
+  when: setup_zsh == True
+
+# Install neovim
+- include_tasks: neovim.yml
+  when: install_neovim == True
+
+# Web Browser
+- include_tasks: "firefox.yml"
+
+# Office
+- include_tasks: office.yml
+  when: install_office == True
+
+# obsidian
+- include_tasks: obsidian.yml
+  when: install_obsidian == True
+  
+# AUR apps
+- include_tasks: aur.yml
+  when: use_aur == True
+
+# yay apps
+- include_tasks: yay.yml
+  when: install_yay_apps == True
+
+# Dotfiles
+- include_tasks: dotfiles.yml
+  when: pull_dotfiles == True
+
+# Dotfiles
+- include_tasks: discord.yml
+  when: install_discord == True
+
+
+
+

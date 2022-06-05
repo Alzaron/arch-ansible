@@ -1,0 +1,42 @@
+- name: Clone user dotfiles
+  git: repo={{ dotfiles.url }} dest=/tmp/{{ dotfiles.destination }} accept_hostkey=yes update=no
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Install user dotfiles
+  command: rcup -d /tmp/{{ dotfiles.destination}} {{ dotfiles.rcup_flags }}
+  become: yes
+  become_user: "{{ username }}" 
+
+- name: move and replace .config
+  ansible.builtin.copy:
+    src: /tmp/movetodotfile/.config
+    dest: /home/{{ username }}
+    force: yes
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: move and replace mountain background
+  copy:
+   src: Background
+   dest: /home/{{ username }}/Pictures
+   owner: "{{ username }}"
+   group: "{{ username }}"
+   force: False
+   mode: u+rw,g+xr,o+x
+
+- name: move and replace .zshrc
+  ansible.builtin.copy:
+    src: /tmp/movetodotfile/.zshrc
+    dest: /home/{{ username }}
+    force: yes
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: refresh bspwm
+  ansible.builtin.command:
+    bspc wm -r
+      - 
+- name: refresh sxhkd
+  ansible.builtin.command:
+    pkill -usr1 -x sxhkd
